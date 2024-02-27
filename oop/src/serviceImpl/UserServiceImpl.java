@@ -7,6 +7,7 @@ import service.AuthService;
 import service.UserService;
 import service.UtilService;
 
+import java.lang.reflect.Member;
 import java.util.*;
 
 public class UserServiceImpl implements UserService {
@@ -21,11 +22,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public String join(Scanner sc) {
-        Map<String, UserDto>map=new HashMap<>();
+        Map<String, UserDto> map=new HashMap<>();
+        System.out.println("이름을 입력해주세요");
+        String name = sc.next();
         System.out.println("이름,아이디,비번,비번확인,주번," +
                 "폰번,주소,직업,키,몸무게를 입력해주세요");
-        UserDto user = new UserBuilder()
-                .name(sc.next())
+        map.put(name,new UserBuilder()
+                .name(name)
                 .username(sc.next())
                 .passWorld(sc.next())
                 .passWorldCheck(sc.next())
@@ -35,8 +38,8 @@ public class UserServiceImpl implements UserService {
                 .job(sc.next())
                 .height(sc.nextDouble())
                 .weight(sc.nextInt())
-                .build();
-        System.out.println(user);
+                .build());
+        System.out.println(map);
         users=map;
         return "완료!";
     }
@@ -63,10 +66,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Map<String, UserDto> getUserList() {
-        for (int i = 0; i <5; i++) {
             System.out.println(users);
-        }
-        return users;
+            return users;
     }
 
     @Override

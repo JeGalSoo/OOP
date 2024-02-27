@@ -21,6 +21,7 @@ public class UserView {
                     System.out.println("종료");
                     return;
                 case "1" :
+                    uc.join(sc);
                     break;
                 case "2" :
                     break;

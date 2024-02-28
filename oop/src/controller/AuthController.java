@@ -1,43 +1,56 @@
+/*
 package controller;
 
+
+import model.UserDto;
 import service.AuthService;
 import serviceImpl.AuthServiceImpl;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Scanner;
 
-public class AuthController {
-    Scanner sc = new Scanner(System.in);
+public class AuthController{
+    AuthService as = AuthServiceImpl.getInstance();
 
-    AuthService auth;
-
-    public AuthController() {
-        this.auth = AuthServiceImpl.getInstance();
-    }
-
-    public String logIn() {   //AuthServiceImpl의 것을 가져와야 됨
-
-        return auth.logIn(sc);
-    }
-
-    public String join() {  //AuthServiceImpl의 것을 가져와야 됨
-        return auth.join();
-    }
 
     public String addUsers() {
-        return auth.addUsers();
+        return null;
     }
 
-    public void findUser(String username) {
-        auth.findUser(username);
+    public String join(UserDto user) {
+        return null;
     }
-    public String count(){
-        System.out.println("회원수 : " + auth.count()+" 명");
-        return auth.count();
+
+    public String login(UserDto user) {
+        return null;
     }
-    public String memberList(){
-        return auth.memberList();
+
+    public UserDto findUserById(String username) {
+        return null;
+    }
+
+    public String updatePassword(UserDto user) {
+        return null;
+    }
+
+    public String deleteUser(String username) {
+        return null;
+    }
+
+    public Map<String, UserDto> getUserList() {
+        return null;
+    }
+
+    public List<UserDto> findUsersByName(String name) {
+        return null;
+    }
+
+    public List<UserDto> findUsersByJob(String job) {
+        return null;
+    }
+
+    public String countUsers() {
+        return null;
     }
 }
+*/

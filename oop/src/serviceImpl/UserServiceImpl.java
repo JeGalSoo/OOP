@@ -1,15 +1,13 @@
 package serviceImpl;
-
 import builder.UserBuilder;
-import controller.UserController;
+import com.sun.jdi.Value;
 import model.UserDto;
-import service.AuthService;
 import service.UserService;
 import service.UtilService;
 
-import java.lang.reflect.Member;
+import java.security.Key;
 import java.util.*;
-
+//id pw pw 94 12 ad jo 123 321
 public class UserServiceImpl implements UserService {
     private static UserService instance = new UserServiceImpl();
     Map<String, UserDto> users;
@@ -21,67 +19,95 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public String join(Scanner sc) {
-        Map<String, UserDto> map=new HashMap<>();
+    public String addUsers() {
+        UtilService ut= UtilServiceImpl.getInstance();
+        for(int i=0;i<5;i++) {
+            String username=UtilServiceImpl.getInstance().createRandomUsername();
+            users.put(username, new UserBuilder()
+                    .username(username)
+                    .name(ut.createRandomUsername())
+                    .passWorld("1")
+                    .passWorldCheck("1")
+                    .build());
+        }
+        return users.size()+"개 더미값 추가";
+    }
+
+    @Override
+    public String join(UserDto join) {
         System.out.println("이름을 입력해주세요");
-        String name = sc.next();
-        System.out.println("이름,아이디,비번,비번확인,주번," +
-                "폰번,주소,직업,키,몸무게를 입력해주세요");
-        map.put(name,new UserBuilder()
-                .name(name)
-                .username(sc.next())
-                .passWorld(sc.next())
-                .passWorldCheck(sc.next())
-                .sso(sc.nextInt())
-                .phoneNumber(sc.nextInt())
-                .address(sc.next())
-                .job(sc.next())
-                .height(sc.nextDouble())
-                .weight(sc.nextInt())
-                .build());
-        System.out.println(map);
-        users=map;
-        return "완료!";
-    }
+        users.put(join.getName(),join);
 
-    @Override
-    public String login(Scanner sc) {
+        System.out.println(users);
         return null;
     }
 
     @Override
-    public UserDto findUserById(String username) {
+    public UserDto login(Scanner sc) {
+        String name1 = sc.next();
+        if(users.containsKey(name1)){
+            if(users.get(name1).equals(sc.next())){
+                System.out.println(name1+"님 로그인에 성공 했습니다.");
+            }else{
+                System.out.println(name1+"님 로그인에 성공 했습니다.");
+            }
+        }else{
+            System.out.println("로그인에 실패 했습니다1.");
+        }
         return null;
     }
 
     @Override
-    public void updatePassword(UserDto user) {
-
-    }
-
-    @Override
-    public String deleteUser(String username) {
+    public String findUserById(Scanner sc) {
+        String name1=sc.next();
+        if(users.containsKey(name1)){
+            System.out.println("아이디가 사용 중 입니다.");
+        }else{
+            System.out.println("아이디가 없습니다.");
+        }
         return null;
     }
 
     @Override
-    public Map<String, UserDto> getUserList() {
+    public void updatePassword(Scanner sc) {
+        String name1 = sc.next();
+        if (users.containsKey(name1)) {
+            users.put(name1, new UserBuilder()
+                    .passWorld(sc.next())
+                    .build());
+        }
+    }
+
+    @Override
+    public void deleteUser(Scanner sc) {
+        String name1 = sc.next();
+        users.remove(name1);
+    }
+
+    @Override
+    public void getUserList() {
             System.out.println(users);
-            return users;
     }
 
     @Override
     public List<UserDto> findUsersByName(String name) {
-        return null;
+        ArrayList<UserDto> lList = new ArrayList<>();
+        for (String keys : users.keySet()) {
+            UserDto rList = users.get(keys);
+            if (name.compareTo(rList.getName()) == 0) lList.add(rList);
+        }
+        System.out.println(lList);
+        return lList;
     }
 
     @Override
-    public List<UserDto> findUsersByJob(String job) {
+    public List<UserDto> findUsersByJob() {
         return null;
     }
 
     @Override
     public int countUsers() {
+        System.out.println("회원수 : " + users.size()+" 명");
         return users.size();
     }
 }

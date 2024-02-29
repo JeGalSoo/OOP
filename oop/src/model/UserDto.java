@@ -7,9 +7,9 @@ import lombok.*;
 @ToString
 public class UserDto {
     private String username;
+    private String name;
     private String passWorld;
     private String passWorldCheck;
-    private String name;
     private int sso;
     private int phoneNumber;
     private String address;

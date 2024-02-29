@@ -29,8 +29,8 @@ public class UserController {
         System.out.println("이름, 아이디,비번,비번확인,주번," +
                 "폰번,주소,직업,키,몸무게를 입력해주세요");
             return us.join(new UserBuilder()
+                    .username(sc.next())
                 .name(sc.next())
-                .username(sc.next())
                 .passWorld(sc.next())
                 .passWorldCheck(sc.next())
                 .sso(sc.nextInt())
@@ -78,13 +78,13 @@ public class UserController {
 
     public List<UserDto> findUsersByName(Scanner sc) {
         return us.findUsersByName(new UserBuilder()
-                        .username(sc.next())
+                        .name(sc.next())
                 .build());
     }
 
     public List<UserDto> findUsersByJob(Scanner sc) {
         return us.findUsersByJob(new UserBuilder()
-                        .username(sc.next())
+                        .job(sc.next())
                 .build());
     }
 

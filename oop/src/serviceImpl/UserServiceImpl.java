@@ -37,7 +37,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public String join(UserDto join) {
         System.out.println("이름을 입력해주세요");
-        users.put(join.getName(),join);
+        users.put(join.getUsername(),join);
         System.out.println(users);
         return null;
     }
@@ -45,6 +45,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDto login(UserDto login) {
+        System.out.println(login.getUsername());
+        System.out.println(login.getName());
         if (users.containsKey(login.getUsername())) {
             if(users.get(login.getUsername()).getPassWorld().equals(login.getPassWorld())){
                 System.out.println(login.getUsername()+"님 로그인에 성공 했습니다.");
@@ -71,9 +73,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public String updatePassword(UserDto updatePassword) {
         if (users.containsKey(updatePassword.getUsername())) {
-            users.(updatePassword.getUsername();
+
+            users.put(updatePassword.getUsername(), new UserBuilder()
+                    .passWorld(updatePassword.getPassWorld())
+                    .build());
         }
-         return null;
+        return null;
     }
 
     @Override
@@ -91,11 +96,9 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<UserDto> findUsersByName(UserDto findUsersByName) {
         ArrayList<UserDto> lList = new ArrayList<>();
-        for(int i=0; i<users.size();i++){
         for (String keys : users.keySet()) {
             UserDto rList = users.get(keys);
-            if (findUsersByName.getUsername().compareTo(rList.getName()) == 0) lList.add(rList);
-        }
+            if (findUsersByName.getName().compareTo(rList.getName()) == 0) lList.add(rList);
         }
         System.out.println(lList);
         return lList;
@@ -106,7 +109,7 @@ public class UserServiceImpl implements UserService {
         ArrayList<UserDto> lList = new ArrayList<>();
         for (String keys : users.keySet()) {
             UserDto rList = users.get(keys);
-            if (findUsersByJob.getUsername().compareTo(rList.getJob()) == 0) lList.add(rList);
+            if (findUsersByJob.getJob().compareTo(rList.getJob()) == 0) lList.add(rList);
         }
         System.out.println(lList);
         return lList;

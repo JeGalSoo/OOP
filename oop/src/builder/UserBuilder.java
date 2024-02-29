@@ -4,9 +4,9 @@ import model.UserDto;
 
 public class UserBuilder {
     private String username;
+    private String name;
     private String passWorld;
     private String passWorldCheck;
-    private String name;
     private int sso;
     private int phoneNumber;
     private String address;
@@ -16,13 +16,13 @@ public class UserBuilder {
     private double bmi;
     private String bodyMath;
 
-    public UserBuilder name(String name) {
-        this.name = name;
+    public UserBuilder username(String username) {
+        this.username = username;
         return this;
     }
 
-    public UserBuilder username(String username) {
-        this.username = username;
+    public UserBuilder name(String name) {
+        this.name = name;
         return this;
     }
 
@@ -78,8 +78,8 @@ public class UserBuilder {
 
 
     public UserDto build() {
-        return new UserDto(name, username, passWorld, passWorldCheck, sso,
-                phoneNumber, address, job, height, weight, bmi, bodyMath);
+        return new UserDto(username, name, passWorld, passWorldCheck, sso,
+                phoneNumber,  address,job, height, weight, bmi, bodyMath);
     }
 
 }

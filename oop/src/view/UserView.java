@@ -23,6 +23,7 @@ public class UserView {
                     break;
                 case "2" :
                     uc.login(sc);
+                    uc.checkPassword(sc);
                     break;
                 case "3" :
                     uc.findUserById(sc);
@@ -40,6 +41,7 @@ public class UserView {
                     uc.findUsersByName(sc);
                     break;
                 case "8" :
+                    uc.findUsersByJob(sc);
                     break;
                 case "9" :
                     uc.countUsers();

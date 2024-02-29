@@ -11,22 +11,24 @@ import java.util.Scanner;
 
 public class UserController {
 
-    UserService us = UserServiceImpl.getInstance();
+    UserService us;
 
 
-    public UserDto logIn(Scanner sc) {   //AuthServiceImpl의 것을 가져와야 됨
+/*    public UserDto logIn(Scanner sc) {   //AuthServiceImpl의 것을 가져와야 됨
 
         return us.login(sc);
+    }*/
+    public UserController(){
+        us = UserServiceImpl.getInstance();
     }
     public String addUsers(){
-//        System.out.println(us.addUsers());
         return us.addUsers();
     }
 
     public String join(Scanner sc) {
         System.out.println("이름, 아이디,비번,비번확인,주번," +
                 "폰번,주소,직업,키,몸무게를 입력해주세요");
-        UserDto join=new UserBuilder()
+            return us.join(new UserBuilder()
                 .name(sc.next())
                 .username(sc.next())
                 .passWorld(sc.next())
@@ -37,41 +39,56 @@ public class UserController {
                 .job(sc.next())
                 .height(sc.nextDouble())
                 .weight(sc.nextInt())
-                .build();
-        return us.join(join);
+                .build());
     }
 
     public UserDto login(Scanner sc) {
-        return us.login(sc);
+        System.out.println("ID를 입력 하세요");
+        return us.login(new UserBuilder()
+                .username(sc.next())
+                .passWorld(sc.next())
+                .build());
     }
+
 
     public String findUserById(Scanner sc) {
-        return us.findUserById(sc);
+        return us.findUserById(new UserBuilder()
+                .username(sc.next())
+                .build());
     }
 
-    public void updatePassword(Scanner sc) {
-        us.updatePassword(sc);
+    public String updatePassword(Scanner sc) {
+        return us.updatePassword(new UserBuilder()
+                        .username(sc.next())
+                        .passWorld(sc.next())
+                .build());
 
     }
 
-    public void deleteUser(Scanner sc) {
-        us.deleteUser(sc);
+    public String deleteUser(Scanner sc) {
+        return us.deleteUser(new UserBuilder()
+                        .username(sc.next())
+                .build());
     }
 
-    public void getUserList() {
-        us.getUserList();
+    public String getUserList() {
+
+        return us.getUserList();
     }
 
     public List<UserDto> findUsersByName(Scanner sc) {
-        String name = sc.next();
-        return us.findUsersByName(name);
+        return us.findUsersByName(new UserBuilder()
+                        .username(sc.next())
+                .build());
     }
 
-    public List<UserDto> findUsersByJob() {
-        return us.findUsersByJob();
+    public List<UserDto> findUsersByJob(Scanner sc) {
+        return us.findUsersByJob(new UserBuilder()
+                        .username(sc.next())
+                .build());
     }
 
-    public void countUsers() {
-        us.countUsers();
+    public String countUsers() {
+        return us.countUsers();
     }
 }

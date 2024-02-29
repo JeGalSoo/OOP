@@ -1,6 +1,7 @@
 package builder;
 import model.UserDto;
 
+
 public class UserBuilder {
     private String username;
     private String passWorld;
@@ -14,8 +15,6 @@ public class UserBuilder {
     private int weight;
     private double bmi;
     private String bodyMath;
-    private int randomWeight;
-    private double randomHeight;
 
     public UserBuilder name(String name) {
         this.name = name;
@@ -77,18 +76,10 @@ public class UserBuilder {
         return this;
     }
 
-    public UserBuilder randomWeight(int randomWeight) {
-        this.randomWeight = randomWeight;
-        return this;
-    }
-
-    public UserBuilder randomHeight(double randomHeight) {
-        this.randomHeight = randomHeight;
-        return this;
-    }
 
     public UserDto build() {
-        return new UserDto(name, username, passWorld, passWorldCheck, sso, phoneNumber, address, job, height, weight, bmi, bodyMath, randomWeight, randomHeight);
+        return new UserDto(name, username, passWorld, passWorldCheck, sso,
+                phoneNumber, address, job, height, weight, bmi, bodyMath);
     }
 
 }

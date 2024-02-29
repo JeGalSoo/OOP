@@ -27,6 +27,10 @@ public class Main {
                     break;
                 case "5":
                     UserView.main(sc);
+                    break;
+                case "6":
+                    AccountView.main();
+                    break;
                 default:
                     System.out.println("잘못 입력하셨습니다.");
                     break;

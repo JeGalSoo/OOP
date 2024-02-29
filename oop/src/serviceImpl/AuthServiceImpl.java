@@ -58,6 +58,7 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public String updatePassword(UserDto user) {
+    users.get(user.getUsername()).setPassword(user.getPassword());
         return null;
     }
 
@@ -69,17 +70,17 @@ public class AuthServiceImpl implements AuthService {
     @Override
     public Map<String, UserDto> getUserList() {
         return null;
-    }
+    }//만약 리스트면 return new ArayList<>(users.values());
 
     @Override
     public List<UserDto> findUsersByName(String name) {
         return null;
-    }
+    }//홀드
 
     @Override
     public List<UserDto> findUsersByJob(String job) {
         return null;
-    }
+    }//홀드
 
     @Override
     public String countUsers() {

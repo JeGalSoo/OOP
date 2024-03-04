@@ -1,90 +1,99 @@
-/*
 package serviceImpl;
-import builder.UserBuilder;
-import jdk.jshell.execution.Util;
-import model.UserDto;
+
+import lombok.Getter;
+import model.User;
 import service.AuthService;
-import service.UserService;
 import service.UtilService;
 
-import java.security.PrivateKey;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class AuthServiceImpl implements AuthService {
+    @Getter
     private static AuthService instance = new AuthServiceImpl();
-    Map<String, UserDto> users;
+    Map<String, User> users;
 
-    private AuthServiceImpl() {
-        users = new HashMap<>();
-    }
-
-    public static AuthService getInstance() {
-        return instance;
-    } //디폴트 생성자를 막음
-
-    @Override
-    public String addUsers() {
-        UtilService us = UtilServiceImpl.getInstance();
-        for (int i = 0; i < 5; i++) {
-            String username = UtilServiceImpl.getInstance().createRandomUsername();
-            users.put(username, new UserBuilder()
-                    .username(username)
-                    .name(us.createRandomUsername())
-                    .passWorld("1")
-                    .passWorldCheck("1")
-                    .build());
-        }
-        return users.size() + "";
-
+    private AuthServiceImpl(){
+        this.users = new HashMap<>();
     }
 
     @Override
-    public String join(UserDto user) {
-        return null;
+    public String join(User user) {
+        users.put(user.getUsername(), user);
+        return "회원가입 성공";
     }
 
     @Override
-    public String login(UserDto user) {
-        return null;
+    public String login(User user) {
+        return users.getOrDefault(user.getUsername(), User.builder().password("").build())
+                .getPassword()
+                .equals(user.getPassword()) ?
+                "로그인 성공" : "로그인 실패";
     }
 
     @Override
-    public UserDto findUserById(String username) {
-        return null;
+    public User findUserById(String username) {
+        return users.get(username)
+                ;
     }
 
     @Override
-    public String updatePassword(UserDto user) {
-    users.get(user.getUsername()).setPassword(user.getPassword());
-        return null;
+    public String updatePassword(User user) {
+        users.get(user.getUsername()).setPassword(user.getPassword());
+
+        return "비번 변경 성공";
     }
 
     @Override
     public String deleteUser(String username) {
+        users.remove(username);
+        return "회원삭제";
+    }
+
+    @Override
+    public List<User> getUserList() {
+        return  new ArrayList<>(users.values());
+    }
+
+    @Override
+    public List<User> findUsersByName(String name) {
+
         return null;
     }
 
     @Override
-    public Map<String, UserDto> getUserList() {
-        return null;
-    }//만약 리스트면 return new ArayList<>(users.values());
+    public List<User> findUsersByJob(String job) {
 
-    @Override
-    public List<UserDto> findUsersByName(String name) {
         return null;
-    }//홀드
-
-    @Override
-    public List<UserDto> findUsersByJob(String job) {
-        return null;
-    }//홀드
+    }
 
     @Override
     public String countUsers() {
-        return null;
+        return users.size()+"";
     }
+
+    @Override
+    public Map<String, User> getUserMap() {
+        return users;
+    }
+
+    @Override
+    public String addUsers() {
+        Map<String, User> map = new HashMap<>();
+        UtilService util = UtilServiceImpl.getInstance();
+
+        for(int i=0; i<5; i++){
+            String username = util.createRandomUsername();
+            map.put(username,
+                    User.builder()
+                            .username(username)
+                            .password("1")
+                            .name(util.createRandomName())
+                            .build());
+        }
+        users = map;
+        return users.size()+"개 더미값 추가";
+
+    }
+
+
 }
-*/

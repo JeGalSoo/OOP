@@ -1,16 +1,15 @@
 package service;
 
-import controller.AccountController;
-import model.AccountDto;
+import model.Account;
 
 import java.util.List;
 import java.util.Scanner;
 
 public interface AccountService {
-        String createAccount(AccountDto ad);
-        String deposit(AccountDto ad,Scanner sc);
-        String withdraw(AccountDto ad,Scanner sc);
-        List<AccountDto> getBalance(AccountDto ad);
-        String cancelAccount(AccountDto ad,Scanner sc);
-        List<AccountDto> getAccounts();
+        String createAccount(Account ad);
+        String deposit(Account ad, Scanner sc);
+        String withdraw(Account ad, Scanner sc);
+        List<?> getBalance(Account ad);
+        String cancelAccount(Account ad, Scanner sc);
+        List<?> getAccounts(Account ad);
 }

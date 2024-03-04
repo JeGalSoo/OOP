@@ -1,20 +1,17 @@
 package serviceImpl;
-import builder.UserBuilder;
-import com.sun.jdi.Value;
 import lombok.Getter;
-import model.UserDto;
+import model.User;
 import service.UserService;
 import service.UtilService;
 
-import java.security.Key;
 import java.util.*;
 //id pw pw 94 12 ad jo 123 321
 public class UserServiceImpl implements UserService {
     @Getter
     private static UserService instance = new UserServiceImpl();
-    Map<String, UserDto> users;
+    Map<String, User> users;
     boolean check=false;
-    private UserServiceImpl(){//디폴트 생성자를 막음
+    public UserServiceImpl(){//디폴트 생성자를 막음
         users = new HashMap<>();
     }
 
@@ -23,11 +20,11 @@ public class UserServiceImpl implements UserService {
         UtilService ut= UtilServiceImpl.getInstance();
         for(int i=0;i<5;i++) {
             String username=UtilServiceImpl.getInstance().createRandomUsername();
-            users.put(username, new UserBuilder()
+            users.put(username, User.builder()
                     .username(username)
                     .name(ut.createRandomUsername())
-                    .passWorld("1")
-                    .passWorldCheck("1")
+                    .password("1")
+                    .password("1")
                     .job("아모르파티")
                     .build());
         }
@@ -35,7 +32,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public String join(UserDto join) {
+    public String join(User join) {
         System.out.println("이름을 입력해주세요");
         users.put(join.getUsername(),join);
         System.out.println(users);
@@ -44,11 +41,11 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public UserDto login(UserDto login) {
+    public User login(User login) {
         System.out.println(login.getUsername());
         System.out.println(login.getName());
         if (users.containsKey(login.getUsername())) {
-            if(users.get(login.getUsername()).getPassWorld().equals(login.getPassWorld())){
+            if(users.get(login.getUsername()).getPassword().equals(login.getPassword())){
                 System.out.println(login.getUsername()+"님 로그인에 성공 했습니다.");
             }else{
                 System.out.println(login.getUsername()+"님 로그인에 실패 했습니다.");
@@ -61,7 +58,7 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public String findUserById(UserDto findUserById) {
+    public String findUserById(User findUserById) {
         if(users.containsKey(findUserById.getUsername())){
             System.out.println("아이디가 사용 중 입니다.");
         }else{
@@ -71,18 +68,18 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public String updatePassword(UserDto updatePassword) {
+    public String updatePassword(User updatePassword) {
         if (users.containsKey(updatePassword.getUsername())) {
 
-            users.put(updatePassword.getUsername(), new UserBuilder()
-                    .passWorld(updatePassword.getPassWorld())
+            users.put(updatePassword.getUsername(), User.builder()
+                    .password(updatePassword.getPassword())
                     .build());
         }
         return null;
     }
 
     @Override
-    public String deleteUser(UserDto deleteUser) {
+    public String deleteUser(User deleteUser) {
         users.remove(deleteUser.getUsername());
         return null;
     }
@@ -94,10 +91,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<UserDto> findUsersByName(UserDto findUsersByName) {
-        ArrayList<UserDto> lList = new ArrayList<>();
+    public List<User> findUsersByName(User findUsersByName) {
+        ArrayList<User> lList = new ArrayList<>();
         for (String keys : users.keySet()) {
-            UserDto rList = users.get(keys);
+            User rList = users.get(keys);
             if (findUsersByName.getName().compareTo(rList.getName()) == 0) lList.add(rList);
         }
         System.out.println(lList);
@@ -105,10 +102,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<UserDto> findUsersByJob(UserDto findUsersByJob) {
-        ArrayList<UserDto> lList = new ArrayList<>();
+    public List<User> findUsersByJob(User findUsersByJob) {
+        ArrayList<User> lList = new ArrayList<>();
         for (String keys : users.keySet()) {
-            UserDto rList = users.get(keys);
+            User rList = users.get(keys);
             if (findUsersByJob.getJob().compareTo(rList.getJob()) == 0) lList.add(rList);
         }
         System.out.println(lList);

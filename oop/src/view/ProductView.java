@@ -1,7 +1,6 @@
 package view;
 
-import builder.ProductBuilder;
-import model.ProductDto;
+import model.Product;
 import service.ProductService;
 import serviceImpl.ProductServiceImpl;
 
@@ -10,10 +9,10 @@ import java.util.List;
 
 public class ProductView {
     public static void main(String[] args) {
-        List<ProductDto> pd = new ArrayList<>();
+        List<Product> pd = new ArrayList<>();
         ProductService pdo = ProductServiceImpl.getInstance();
         for(int i=0; i<6;i++){
-            pd.add(new ProductBuilder()
+            pd.add(Product.builder()
                     .pno(pdo.createRandompno())
                     .name(pdo.createRandomName())
                     .company(pdo.createRandomCompany())

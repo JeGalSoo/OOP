@@ -1,8 +1,7 @@
 package serviceImpl;
 
-import model.BoardDto;
+import model.Board;
 import service.BoardService;
-import service.GradeService;
 
 public class BoardServiceImpl implements BoardService {
     private static BoardService instance = new BoardServiceImpl();
@@ -12,7 +11,7 @@ public class BoardServiceImpl implements BoardService {
     }
 
 
-    public String getWriter(BoardDto writer){
+    public String getWriter(Board writer){
         return "";
     }
 }

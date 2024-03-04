@@ -1,8 +1,6 @@
 package view;
-import builder.SubjectBuilder;
-import builder.UserBuilder;
-import model.SubjectDto;
-import model.UserDto;
+import model.Subject;
+import model.User;
 import service.GradeService;
 import service.UtilService;
 import serviceImpl.GradeServiceImpl;
@@ -12,15 +10,15 @@ import java.util.Scanner;
 
 public class GradeView {
     public static void main(Scanner sc) {
-        UserDto student = new UserBuilder()
+        User student = User.builder()
                 .name(sc.next())
                 .build();
         UtilService util = UtilServiceImpl.getInstance();
-        SubjectDto subjects = new SubjectBuilder()
-                .koreaScore(util.createRandomInteger(0, 100))
+        Subject subjects=(Subject.builder()
+        .koreaScore(util.createRandomInteger(0, 100))
                 .englishScore(util.createRandomInteger(0, 100))
                 .mathScore(util.createRandomInteger(0, 100))
-                .build();
+                .build());
         GradeService grade = GradeServiceImpl.getInstance();
         int totalScore = grade.getTotalScore(subjects);
         double average = grade.findAverage(totalScore);

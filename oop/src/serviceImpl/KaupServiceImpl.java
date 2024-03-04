@@ -1,17 +1,27 @@
 package serviceImpl;
-import model.UserDto;
+import lombok.Getter;
+import model.User;
 import service.KaupService;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
 public class KaupServiceImpl implements KaupService {
 
+    @Getter
     private static KaupService instance = new KaupServiceImpl();
-    private KaupServiceImpl(){} //디폴트 생성자를 막음
-    public static KaupService getInstance() {
-        return instance;
-    }
+    Map<String,?> kaupMap;
+    List<? extends User> kaupList;
+    private KaupServiceImpl(){
+        kaupList = new ArrayList<>();
+        kaupMap = new HashMap<>();
+    } //디폴트 생성자를 막음
+
     @Override
-    public String creatBmi(UserDto user) {
+    public String creatBmi(User user) {
         double height = user.getHeight()/100;
         double weight = user.getWeight();
         double bmi = (weight/(height*2));

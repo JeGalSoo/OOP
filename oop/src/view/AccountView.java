@@ -1,7 +1,6 @@
 package view;
 
 import controller.AccountController;
-import model.AccountDto;
 
 import java.util.List;
 import java.util.Scanner;
@@ -20,7 +19,7 @@ public class AccountView {
                     System.out.println("종료");
                     return;
                 case "1":
-                    System.out.println(ac.createAccount(sc));
+                    ac.createAccount(sc);
                     break;
                 case "2":
                     System.out.println(ac.deposit(sc));
@@ -29,7 +28,7 @@ public class AccountView {
                     System.out.println(ac.withdraw(sc));
                     break;
                 case "4":
-                    List<AccountDto> temp= ac.getBalance(sc);
+                    List<?> temp= ac.getBalance(sc);
                     break;
                 case "5":
                     System.out.println(ac.cancelAccount(sc));

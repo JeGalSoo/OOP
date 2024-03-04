@@ -14,7 +14,7 @@ public class Main {
                     System.out.println("시스템을 종료합니다.");
                     return; //종료
                 case "1":
-//                    AuthView.main(sc);
+                    AuthView.main(sc);
                     break; //잠깐 종료 후 다시시작
                 case "2":
                     GradeView.main(sc);

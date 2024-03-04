@@ -1,16 +1,14 @@
 package serviceImpl;
 
+import lombok.Getter;
 import service.ProductService;
 
 public class ProductServiceImpl implements ProductService{
+    @Getter
     private static ProductService instance = new ProductServiceImpl();
 
     private ProductServiceImpl() {
     } //디폴트 생성자를 막음
-
-    public static ProductService getInstance() {
-        return instance;
-    }
 
     @Override
     public int createRandompno() {

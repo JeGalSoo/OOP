@@ -11,7 +11,7 @@ public class Account {
         private String accountHolder;
         private double balance;
         private Date transactionDate;
-        @Builder(builderClassName = "builder")
+        @Builder(builderClassName = "builder")//빌더의 이름을 내가 지정한 것
         public Account(long id, String accountNumber, String accountHolder, double balance, Date transactionDate) {
                 this.id = id;
                 this.accountNumber = accountNumber;

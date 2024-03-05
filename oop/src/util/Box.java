@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map;
 
 import static java.util.Objects.checkIndex;
-import static java.util.Objects.hash;
 
 public class Box <T>{
     private Map<String, T> box;
@@ -34,5 +33,8 @@ public class Box <T>{
 
     public void clear(){
         box.clear();
+    }
+    public T aa(){
+        return box.get(0);
     }
 }

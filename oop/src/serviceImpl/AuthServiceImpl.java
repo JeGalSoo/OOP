@@ -1,6 +1,5 @@
 package serviceImpl;
 
-import lombok.Getter;
 import model.User;
 import service.AuthService;
 import service.UtilService;
@@ -8,14 +7,13 @@ import service.UtilService;
 import java.util.*;
 
 public class AuthServiceImpl implements AuthService {
-    @Getter
     private static AuthService instance = new AuthServiceImpl();
     Map<String, User> users;
 
     private AuthServiceImpl(){
         this.users = new HashMap<>();
     }
-
+    public static AuthService getInstance(){return instance;}
     @Override
     public String join(User user) {
         users.put(user.getUsername(), user);

@@ -13,12 +13,12 @@ public class AuthView {
         System.out.println("authController.addUsers 결과 : "+msg);
         while(true){
             System.out.println("[관리자메뉴] 0-종료\n " +
-                    "1-회원가입\n" +
-                    "2-로그인\n" +
-                    "3-ID검색\n" +
+                    "1-회원가입\n " +
+                    "2-로그인\n " +
+                    "3-ID검색\n " +
                     "4-비번변경\n" +
-                    "5-탈퇴\n" +
-                    "6-회원목록\n" +
+                    "5-탈퇴\n " +
+                    "6-회원목록\n " +
                     "7-이름검색\n" +
                     "8-직업검색\n" +
                     "9-회원수");
@@ -49,7 +49,7 @@ public class AuthView {
                     break;
                 case "6":
                     System.out.println("6-회원목록");
-                    Map<String, User> users = authController.getUserMap();
+                    Map<String, ?> users = authController.getUserMap();
                     users.forEach((k,v)->{
                         System.out.printf("아이디: %s, 회원정보: %s", k, v);
                     });

@@ -7,6 +7,7 @@ import service.AccountService;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Stream;
 
 public class AccountServiceImpl implements AccountService {
     @Getter
@@ -17,8 +18,7 @@ public class AccountServiceImpl implements AccountService {
         this.list = new ArrayList<>();
     } //디폴트 생성자를 막음 / 단 앞에 맵 선언 필요
 
-
-
+    
     @Override
     public String createAccount(Account ad) {
         int a=0;

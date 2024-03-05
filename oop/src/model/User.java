@@ -2,7 +2,6 @@ package model;
 import lombok.*;
 
 @Setter
-
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @ToString(exclude = {"username"})
@@ -16,14 +15,11 @@ public class User {
     private String job;
     private double height;
     private double weight;
-
-    @Builder(builderMethodName = "builder")
-    public User(String username, String password,
-                String name, String ssn, String phoneNumber,
-                String address, String job,
-                double height, double weight) {
-        this.username = username;
+    @Builder
+    public User(String password, String username, String name, String ssn, String phoneNumber,
+                String address, String job, double height, double weight) {
         this.password = password;
+        this.username = username;
         this.name = name;
         this.ssn = ssn;
         this.phoneNumber = phoneNumber;
@@ -32,5 +28,4 @@ public class User {
         this.height = height;
         this.weight = weight;
     }
-
 }

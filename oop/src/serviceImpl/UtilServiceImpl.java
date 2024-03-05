@@ -1,17 +1,15 @@
 package serviceImpl;
 
+import lombok.Getter;
 import service.UtilService;
 
 public class UtilServiceImpl implements UtilService {
 
+    @Getter
     private static UtilService instance = new UtilServiceImpl();
 
     private UtilServiceImpl() {
     } //디폴트 생성자를 막음
-
-    public static UtilService getInstance() {
-        return instance;
-    }
 
     @Override
     public int createRandomInteger(int start, int gapBetweenStarAndEnd) {

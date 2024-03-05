@@ -24,7 +24,10 @@ public class AuthController{
     public String join(Scanner scanner) {
         System.out.println("ID, " +
                 "비밀번호, " +
+                "비밀번호 확인, " +
                 "이름, " +
+                "주민번호 " +
+                "전화번호, " +
                 "주소, " +
                 "직업을 입력해주세요");
         return authService.join(User.builder()
@@ -38,7 +41,6 @@ public class AuthController{
 
     public String login(Scanner scanner) {
         System.out.println("로그인할 ID 입력 : ");
-        System.out.println("비밀번호 입력 : ");
         return authService.login(User.builder()
                 .username(scanner.next())
                 .password(scanner.next())
